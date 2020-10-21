@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductPageAddToCard from './ProductPageAddToCart'
+import PopularRow from './PopularRow'
 
 function ProductPage(props) {
 	const [stars, starsSet] = useState([])
@@ -10,10 +11,50 @@ function ProductPage(props) {
 			margin: 10,
 			padding: 10,
 		},
-		title: { marginTop: '10px', fontSize: '21px', fontWeight: '400' },
-		stars: { marginTop: '10px' },
-		list: { marginTop: '10px' },
-		image: {},
+		title: {
+			paddingLeft: '17px',
+			marginTop: '10px',
+			paddingBottom: '15px',
+			fontSize: '21px',
+			fontWeight: '700',
+		},
+		stars: {
+			marginLeft: '20px',
+			marginTop: '10px',
+		},
+		list: {
+			paddingLeft: '-40px',
+			marginTop: '10px',
+			fontSize: '12pt',
+		},
+		wrapper: {
+			marginRight: '50px',
+		},
+		image: {
+			marginTop: 'auto',
+			marginBottom: 'auto',
+			width: 'auto',
+			maxWidth: '400px',
+			maxHeight: '400px',
+			paddingRight: '25px',
+		},
+		shopnow: {
+			fontSize: '14px',
+			color: '#0066c0',
+			marginLeft: '20px',
+			cursor: 'pointer',
+			borderBottomWidth: 'thin',
+			borderBottomStyle: 'solid',
+			borderBottomColor: '#e0e0e0',
+		},
+		popularrow: {
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+			marginTop: '100px',
+			marginBottom: '100px',
+		},
 	}
 
 	const handleStars = () => {
@@ -37,40 +78,88 @@ function ProductPage(props) {
 		return result
 	}
 
+	const holidayRows = [
+		'home_holiday.jpg',
+		'electronic_gifts.jpg',
+		'holiday_dash.jpg',
+		'toy_list.jpg',
+		'fashion_list.jpg',
+		'beauty_gift.jpg',
+		'holiday_prep.jpg',
+		'grocery_list.jpg',
+		'gift_cards.jpg',
+		'shop_gifts.jpg',
+	]
+
+	const basics = [
+		'basics1.jpg',
+		'basics2.jpg',
+		'basics3.jpg',
+		'basics4.jpg',
+		'basics5.jpg',
+		'basics6.jpg',
+		'basics7.jpg',
+	]
+
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		starsSet(handleStars())
 	}, [])
 	return (
-		<div style={styles.container}>
-			<img style={styles.image} src={require('../' + props.item.imagePath)} />
-			<div>
-				<div style={styles.title}>{props.item.title}</div>
-				<div style={styles.stars}>{stars}</div>
-				<ul>
-					<li style={styles.list}>
-						A CLASSROOM CLASSIC: this 6-pack of 1-subject notebooks helps you
-						identify your subjects at a glance with color-coding efficiency;
-						color assortment may vary
-					</li>
-					<li style={styles.list}>
-						THE RIGHT RULING: these 8" x 10-1/2", college-ruled notebooks fit
-						more writing per page than wide-ruled sheets; each notebook provides
-						70 double-sided sheets with red margin lines
-					</li>
-					<li style={styles.list}>
-						PERFECT PERFORATION: Dependable micro perforated sheets retain your
-						must-have notes but still detach cleanly when you’re ready to revise
-						GLIDE FROM PAGE TO PAGE: Your favorite gel or ballpoint pens will
-						move effortlessly across these smooth pages for A+ notes with
-					</li>
-					<li style={styles.list}>
-						minimal ink bleeding or show-through 3-HOLE PUNCHED: Every notebook
-						comes 3-hole punched to fit a standard binder; take along one
-						notebook or several to save extra trips to the locker
-					</li>
-				</ul>
+		<div>
+			<div style={styles.container}>
+				<img style={styles.image} src={require('../' + props.item.imagePath)} />
+				<div style={styles.wrapper}>
+					<div style={styles.title}>{props.item.title}</div>
+					<div style={styles.shopnow}>Visit our store</div>
+					<div style={styles.stars}>{stars}</div>
+					<ul>
+						<li style={styles.list}>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+							enim ad minim veniam, quis nostrud exercitation ullamco laboris
+							nisi ut
+						</li>
+						<li style={styles.list}>
+							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+							accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+							quae ab illo inventore veritatis et quasi architecto beatae vitae
+							dicta sunt explicabo
+						</li>
+						<li style={styles.list}>
+							At vero eos et accusamus et iusto odio dignissimos ducimus qui
+							blanditiis praesentium voluptatum deleniti atque corrupti quos
+							dolores et quas molestias excepturi sint occaecati cupiditate non
+							provident
+						</li>
+						<li style={styles.list}>
+							Et harum quidem rerum facilis est et expedita distinctio. Nam
+							libero tempore, cum soluta nobis est eligendi optio cumque nihil
+							impedit quo minus id quod maxime placeat facere possimus, omnis
+							voluptas assumenda est, omnis dolor repellendus.
+						</li>
+					</ul>
+				</div>
+				<ProductPageAddToCard item={props.item} addToCart={props.addToCart} />
 			</div>
-			<ProductPageAddToCard item={props.item} addToCart={props.addToCart} />
+			<div style={styles.popularrow}>
+				<PopularRow
+					changePage={props.changePage}
+					item={{
+						title: 'All you need to get holiday ready',
+						imagePath: 'images/holiday_images/',
+						items: holidayRows,
+					}}
+				/>
+				<PopularRow
+					changePage={props.changePage}
+					item={{
+						title: 'Popular items from AmazonBasics',
+						imagePath: 'images/basics/',
+						items: basics,
+					}}
+				/>
+			</div>
 		</div>
 	)
 }

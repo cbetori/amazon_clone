@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import retrieveImage from '../imageFetcher'
-import doglist from '../doglist'
 
 function SearchResultItem(props) {
 	const [stars, starsSet] = useState([])

@@ -47,9 +47,13 @@ function Collections(props) {
 		let result = []
 		for (let i = 1; i <= 4; i++) {
 			let image = imagePath + imageName + i + '.jpg'
-			console.log(image)
 			result.push(
-				<img id={image} style={styles.image} src={require('../' + image)} />
+				<img
+					onClick={() => props.changePage('searchresults')}
+					id={image}
+					style={styles.image}
+					src={require('../' + image)}
+				/>
 			)
 		}
 		itemsSet(result)
@@ -63,7 +67,12 @@ function Collections(props) {
 		<div id={props.item.imagePath} style={styles.container}>
 			<div style={styles.header}>{props.item.title}</div>
 			<div style={styles.row}>{items}</div>
-			<div style={styles.shopnow}>Shop Now</div>
+			<div
+				onClick={() => props.changePage('searchresults')}
+				style={styles.shopnow}
+			>
+				Shop Now
+			</div>
 		</div>
 	)
 }

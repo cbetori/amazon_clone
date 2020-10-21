@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import retrieveImage from '../imageFetcher'
 
 function PopularCard(props) {
-	const [image, imageSet] = useState({ messsage: '', status: '' })
 	const styles = {
 		container: {
 			display: 'flex',
@@ -19,6 +18,7 @@ function PopularCard(props) {
 			fontSize: '21px',
 		},
 		image: {
+			cursor: 'pointer',
 			width: '90%',
 			marginLeft: 'auto',
 			marginRight: 'auto',
@@ -46,10 +46,19 @@ function PopularCard(props) {
 	return (
 		<div style={styles.container}>
 			<div style={styles.header}>{props.item.title}</div>
-			<img src={require('../' + props.item.imagePath)} style={styles.image} />
+			<img
+				onClick={() => props.changePage('productpage', props.item)}
+				src={require('../' + props.item.imagePath)}
+				style={styles.image}
+			/>
 			<div style={styles.price}>{props.item.price}</div>
 			<div style={styles.description}>{props.item.description}</div>
-			<div style={styles.shopnow}>Shop Now</div>
+			<div
+				onClick={() => props.changePage('productpage', props.item)}
+				style={styles.shopnow}
+			>
+				Shop Now
+			</div>
 		</div>
 	)
 }

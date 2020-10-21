@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PopularCard from './PopularCard'
 import PopularRow from './PopularRow'
-import PopularRowHoliday from './PopularRowHoliday'
 import PromotedBackground from './PromotedBackground'
 import Collections from './Collections'
 import SignInBox from './SignInBox'
 
-function HomePage() {
+function HomePage(props) {
 	const [holidayRow, holidayRowSet] = useState()
 	const [basicsRow, basicsRowSet] = useState()
 
@@ -75,7 +74,8 @@ function HomePage() {
 
 	let renderHolidayRow = (array, title, imagePath) => {
 		return (
-			<PopularRowHoliday
+			<PopularRow
+				changePage={props.changePage}
 				item={{ title: title, imagePath: imagePath, items: array }}
 			/>
 		)
@@ -104,26 +104,29 @@ function HomePage() {
 				<PromotedBackground />
 				<div style={styles.row_container_top}>
 					<PopularCard
+						changePage={props.changePage}
 						item={{
 							imagePath: 'images/deal_of_day/deal_of_day.jpg',
 							title: 'Deal of the day',
-							price: '$19.31-$52.42',
+							price: '$19.31',
 							description: 'Save on Sylvania New Smart Light Bulbs',
 						}}
 					/>
 					<PopularCard
+						changePage={props.changePage}
 						item={{
 							imagePath: 'images/deal_of_day/bath.jpg',
 							title: 'Create a cozy bathroom',
-							price: '',
+							price: '$10.99',
 							description: 'Update your bathroom',
 						}}
 					/>
 					<PopularCard
+						changePage={props.changePage}
 						item={{
 							imagePath: 'images/deal_of_day/lighting.jpg',
 							title: 'Home Improvement',
-							price: '$9.67-$28.72',
+							price: '$9.67',
 							description: 'Lighting for every situation',
 						}}
 					/>
@@ -133,6 +136,7 @@ function HomePage() {
 				<div style={styles.row_container}>{basicsRow}</div>
 				<div style={styles.row_container_collections}>
 					<Collections
+						changePage={props.changePage}
 						item={{
 							title: 'Beat the rush shop toy gifts',
 							imagePath: 'images/collections/toys/',
@@ -140,6 +144,7 @@ function HomePage() {
 						}}
 					/>
 					<Collections
+						changePage={props.changePage}
 						item={{
 							title: 'Great stocking stuffers',
 							imagePath: 'images/collections/stocking_stuffers/',
@@ -147,6 +152,7 @@ function HomePage() {
 						}}
 					/>
 					<Collections
+						changePage={props.changePage}
 						item={{
 							title: 'Holiday Deals',
 							imagePath: 'images/collections/deals/',
@@ -154,6 +160,7 @@ function HomePage() {
 						}}
 					/>
 					<Collections
+						changePage={props.changePage}
 						item={{
 							title: 'Find great gifts by price',
 							imagePath: 'images/collections/gifts/',

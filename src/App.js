@@ -8,7 +8,7 @@ import SearchResults from './components/SearchResults'
 import ProductPage from './components/ProductPage'
 
 function App() {
-	const [currentPage, currentPageSet] = useState(<HomePage />)
+	const [currentPage, currentPageSet] = useState([])
 	const [cartCount, cartCountSet] = useState(0)
 	const styles = {
 		container: {
@@ -19,10 +19,10 @@ function App() {
 
 	//Basic router functionality
 	const changePage = (component, data) => {
-		console.log(data)
 		if (component === 'searchresults')
 			return currentPageSet(<SearchResults changePage={changePage} />)
-		if (component === 'homepage') return currentPageSet(<HomePage />)
+		if (component === 'homepage')
+			return currentPageSet(<HomePage changePage={changePage} />)
 		if (component === 'productpage')
 			return currentPageSet(
 				<ProductPage
@@ -36,6 +36,10 @@ function App() {
 	let addToCart = (num) => {
 		cartCountSet((cartCount) => cartCount + num)
 	}
+
+	useEffect(() => {
+		currentPageSet(<HomePage changePage={changePage} />)
+	}, [])
 
 	return (
 		<div style={styles.container}>

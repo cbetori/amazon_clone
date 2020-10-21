@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 function ProductPageAddToCard(props) {
-	const styles = {
+	const [quantity, quantitySet] = useState(1)
+	let styles = {
 		container: {
 			display: 'flex',
 			flexDirection: 'column',
@@ -82,9 +83,31 @@ function ProductPageAddToCard(props) {
 			borderRadius: '3px',
 			borderWidth: '1px',
 		},
-		image: {
-			width: '200px',
+		quantityAdded: {
+			display: 'none',
+			backgroundColor: '#efefef',
+			zIndex: 1,
 		},
+		btnwrapper: {
+			height: '100%',
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			alignItems: 'center',
+		},
+	}
+
+	const handleQuantity = () => {
+		let visibility = document.querySelector('.quantityAdded')
+		let currentQuantity = document.querySelector('.currentQuantity')
+		console.log(visibility)
+		if (visibility.style.display === 'none') {
+			visibility.style.display = 'block'
+			currentQuantity.style.display = 'none'
+		} else {
+			visibility.style.display = 'none'
+			currentQuantity.style.display = 'block'
+		}
 	}
 	return (
 		<div style={styles.container}>
@@ -109,11 +132,27 @@ function ProductPageAddToCard(props) {
 			<div>Order within 8 hrs and 19 mins</div>
 			<div style={styles.details}>Details</div>
 			<div style={styles.stock}>In Stock</div>
-			<button style={styles.quantity}>Qty: 1</button>
-			<button style={styles.add} onClick={() => props.addToCart(1)}>
-				Add to Cart
+			<button style={styles.quantity} onClick={() => handleQuantity()}>
+				<div className={'currentQuantity'}>{'Qty: ' + quantity}</div>
+				<div className={'quantityAdded'} style={styles.quantityAdded}>
+					<div onClick={() => quantitySet(1)}>1</div>
+					<div onClick={() => quantitySet(2)}>2</div>
+					<div onClick={() => quantitySet(3)}>3</div>
+					<div onClick={() => quantitySet(4)}>4</div>
+					<div onClick={() => quantitySet(5)}>5</div>
+					<div onClick={() => quantitySet(6)}>6</div>
+					<div onClick={() => quantitySet(7)}>7</div>
+					<div onClick={() => quantitySet(8)}>8</div>
+					<div onClick={() => quantitySet(9)}>9</div>
+					<div onClick={() => quantitySet(10)}>10</div>
+				</div>
 			</button>
-			<button style={styles.buy}>Buy Now</button>
+			<div style={styles.btnwrapper}>
+				<button style={styles.add} onClick={() => props.addToCart(quantity)}>
+					Add to Cart
+				</button>
+				<button style={styles.buy}>Buy Now</button>
+			</div>
 		</div>
 	)
 }

@@ -3,7 +3,6 @@ import SearchResultItem from './SearchResultItem'
 import SearchResultSider from './SearchResultSider'
 
 function SearchResults(props) {
-	console.log(props)
 	const [listView, listViewSet] = useState([])
 	const styles = {
 		container: {
@@ -102,6 +101,7 @@ function SearchResults(props) {
 	}
 
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		listViewSet(renderResults())
 	}, [])
 
