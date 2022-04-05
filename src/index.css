@@ -1,32 +1,43 @@
 body {
-	display: flex;
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  display: flex;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 #root {
-	width: 100%;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
 }
 
 #SideNav {
-	transition-property: all 1s linear;
-	transition-duration: 1s;
+  transition-property: all 1s linear;
+  transition-duration: 1s;
 }
 #imageSearchResult {
-	max-width: 180px;
-	max-height: 250px;
-	margin-top: auto;
-	margin-bottom: auto;
+  max-width: 180px;
+  max-height: 250px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 *:focus {
-	outline: none;
+  outline: none;
 }
